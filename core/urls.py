@@ -16,7 +16,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from core.views import (home_view, 
+                        users_view,
+                        find_products_by_id_view,
+                        search_with_slug_view,
+                        uuid_view,
+                        path_converters_view)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('home/',home_view),
+    # Path converters
+
+    path('users/<str:username>',users_view),   #str
+    path('products/<int:product_id>',find_products_by_id_view),    #int
+    path('news/<slug:title>',search_with_slug_view), #slug
+    path('uuid/<uuid:uuid>', uuid_view),  #uuid
+    path('search/<path:path>',path_converters_view)
+
 ]
